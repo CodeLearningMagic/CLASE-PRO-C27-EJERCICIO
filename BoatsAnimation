@@ -1,0 +1,87 @@
+1. Crear las variables y la matriz 
+var boatAnimation = ______
+var boatSpritedata, boatSpritesheet;
+
+2. Precargas los archivos 
+boatSpritedata = loadJSON("assets/boat/boat.json");
+boatSpritesheet = _________("assets/boat/boat.png");
+
+3. Obtener los datos de JSON 
+Ahora declararemos la variable boatFrames.
+ var boatFrames = boatSprite______.frames;
+ 
+ 4. Bucle for , recorreremos la longitud de los boatFrames.
+ Dentro de este bucle, obtendremos la posición de cada cuadro.
+ Desde SpriteSheet obtendremos la imagen con la posición respectiva 
+y empujaremos esta imagen a la matriz boatAnimation
+ 
+ for (var i = 0; i < boatFrames._____; i++) {
+    var pos = boatFrames[i].position;
+    var img = boatSpritesheet.get(pos.x, pos.y, pos.w, pos.h);
+    boatAnimation.push(img);
+  }
+La variable pos se utiliza para obtener la posición de cada cuadro de boatFrames.
+La variable img se utiliza para obtener la imagen de boatSpritesheet,
+ que coincide con la posición que obtuvimos en la variable pos y luego empujamos esta imagen en la matriz boatAnimation.
+ 
+ 5. Agregar la animación a los barcos que estamos creando.
+Necesitaremos modificar el archivo Boat.js para agregar la animación.
+
+constructor(x, y, width, height, boatPos, _________)
+
+this.animation = boatAnimation;
+
+6. Agregae cierta velocidad a la animacion. 
+Entonces escribiremos una función animate() que nos ayudará a establecer la rapidez de la animación
+
+ animate() {
+    ____.speed += 0.05;
+  }
+  
+  7. En la función display() crearemos una variable index - índice. Usaremos esta variable para recorrer un conjunto de animaciones.
+El índice se calcula utilizando el método floor() en this.speed y this.animation.length. Dentro de image() pasaremos la animación.
+
+______() {
+    var angle = this.body.angle;
+    var pos = this.body.position;
+    var index = ____(this.speed % this.animation.length);
+
+    push();
+    translate(pos.x, pos.y);
+    rotate(angle);
+    imageMode(CENTER);
+    image(this.animation[index], 0, this.boatPosition, this.width, this.height);
+    pop();
+  }
+  
+  8. De manera similar, necesitamos pasar boatAnimation mientras creamos los objetos boat y también llamar a la función animate()dentro de la funsion showBoats
+  en el archivo sketch. 
+  
+  var boat = new Boat(
+        width,
+        height - 100,
+        170,
+        170,
+        position,
+        ____________
+      );
+      
+      
+      
+      for (var i = 0; i < boats.length; i++) {
+      if (boats[i]) {
+        Matter.Body.setVelocity(boats[i].body, {
+          x: -0.9,
+          y: 0
+        });
+
+        boats[i].display();
+        boats[i]._______();
+        
+    }
+    }
+    
+    else {
+    var boat = new Boat(width, height - 60, 170, 170, -60, boat_______);
+    boats.push(boat);
+  }
