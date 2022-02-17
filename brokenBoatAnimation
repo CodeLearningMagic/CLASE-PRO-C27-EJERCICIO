@@ -1,19 +1,18 @@
-var brokenBoatAnimation = [];
-var brokenBoatSpritedata, brokenBoatSpritesheet;
-
-
-  brokenBoatSpritedata = loadJSON("assets/boat/brokenBoat.json");
-  brokenBoatSpritesheet = loadImage("assets/boat/brokenBoat.png");
-  
-  
   var brokenBoatFrames = brokenBoatSpritedata.frames;
   for (var i = 0; i < brokenBoatFrames.length; i++) {
     var pos = brokenBoatFrames[i].position;
     var img = brokenBoatSpritesheet.get(pos.x, pos.y, pos.w, pos.h);
     brokenBoatAnimation.push(img);
   }
-  
-  
+
+
+
+var brokenBoatAnimation = [];
+var brokenBoatSpritedata, brokenBoatSpritesheet;
+
+
+
+
   remove(index) {
     this.animation = brokenBoatAnimation;
     this.speed = 0.05;
@@ -25,3 +24,13 @@ var brokenBoatSpritedata, brokenBoatSpritesheet;
       delete boats[index];
     }, 2000);
   }
+
+
+
+  brokenBoatSpritedata = loadJSON("assets/boat/brokenBoat.json");
+  brokenBoatSpritesheet = loadImage("assets/boat/brokenBoat.png");
+  
+  
+
+  
+
